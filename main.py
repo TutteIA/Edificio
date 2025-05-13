@@ -1,6 +1,10 @@
 # ----------------------------
 # FUNCIONES EXTRAIDAS
 
+# para obtener variables privadas
+from dotenv import load_dotenv
+import os
+
 # para conexion con google
 from utilidades.conexion import conexion_google
 
@@ -20,14 +24,15 @@ from modelos.estado_servicios import generar_estado_servicios
 
 # ----------------------------
 # CONEXION PYTHON - GOOGLE
+load_dotenv()
 
 # conexion al libro de carga de datos
 cliente = conexion_google("credenciales-proyecto-mendoza.json")
-NOMBRE_LIBRO = "Mendoza"
+NOMBRE_LIBRO = os.getenv("NOMBRE_LIBRO")
 
 # conexion al libro auxiliar para conexion looker
 cliente_nuevo = conexion_google("credenciales-proyecto-mendoza-looker.json")
-KEY_LIBRO_NUEVO = "1uOxmhIsyomOrrzOsjw8kQT78al_V5Gv9EQGsjsB7ZWs"
+KEY_LIBRO_NUEVO = os.getenv("KEY_LIBRO_NUEVO")
 
 
 # ----------------------------
