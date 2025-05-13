@@ -29,11 +29,11 @@ from modelos.estado_servicios import generar_estado_servicios
 
 load_dotenv()
 # libro principal
-cliente_origen = conexion_google("CRED_ORIGEN")
+cliente_origen = conexion_google(os.getenv("CRED_ORIGEN"))
 LIBRO_ORIGEN = os.getenv("LIBRO_ORIGEN")
 
 # libro auxiliar
-cliente_destino = conexion_google("CRED_DESTINO")
+cliente_destino = conexion_google(os.getenv("CRED_DESTINO"))
 LIBRO_DESTINO = os.getenv("LIBRO_DESTINO")
 
 
