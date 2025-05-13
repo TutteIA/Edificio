@@ -6,9 +6,9 @@ import gspread
 
 # Funcion para extraer hoja de calculo de un Libro
 # lo retorna como df
-def obtener_sheet(cliente, nombre_libro, nombre_hoja):
+def obtener_sheet(cliente, key_libro, nombre_hoja):
 
-    libro = cliente.open(nombre_libro)
+    libro = cliente.open_by_key(key_libro)
     hoja = libro.worksheet(nombre_hoja)
     df = get_as_dataframe(
         hoja, evaluate_formulas=True
@@ -21,9 +21,9 @@ def obtener_sheet(cliente, nombre_libro, nombre_hoja):
 
 
 # Funcion para pasar un df a una hoja de calculo en un Libro
-def cargar_sheet(cliente, nombre_libro, nombre_hoja, df):
+def cargar_sheet(cliente, key_libro, nombre_hoja, df):
 
-    libro = cliente.open(nombre_libro)
+    libro = cliente.open_by_key(key_libro)
 
     try:
         hoja = libro.worksheet(nombre_hoja)
