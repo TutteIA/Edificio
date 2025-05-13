@@ -1,8 +1,9 @@
-# librerias
+# Librerias
 import pandas as pd
 
 
-# Funcion que genera df de ingresos mensuales
+# Funcion que genera un df con el estado general de ingresos del negocio
+# contiene el total pagado por mes y por cliente, la diferencia (total estimado) y el estado de pago
 def generar_ingresos_mensuales(df_ficha_mes, df_ingresos, df_clientes):
 
     # formatear fechas

@@ -1,10 +1,10 @@
-# librerias
+# Librerias
 import pandas as pd
 
 
-# Funcion que genera df de estado de edificio
-# trabaja con hojas (dfs) auxiliares del Libro
-# aplica mismos nombres para unificar df's, y genera una columna para cada sector
+# Funcion que genera df para conocimiento general del estado del negocio
+# trabaja con dos hojas auxiliares del libro
+# genera una sola tabla para saber que espacios estan libres, ocupados, y demas informacion
 def generar_estado_edificio(df_estado_deptos, df_estado_cochera):
 
     # seleccion de columnas para deptos
@@ -34,4 +34,5 @@ def generar_estado_edificio(df_estado_deptos, df_estado_cochera):
         [df_estado_deptos, df_estado_cochera], ignore_index=True
     )
 
+    # retorna df final
     return df_estado_edificio

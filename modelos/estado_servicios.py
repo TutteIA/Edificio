@@ -1,8 +1,9 @@
-# librerias
+# Librerias
 import pandas as pd
 
 
-#
+# Funcion que genera df para el estado de rentabilidad por servicio del negocio
+# permite saber el ingreso estimado, el gasto mensual, y la rentabilidad mensual por servicio
 def generar_estado_servicios(df_ficha_mes, df_gastos):
 
     # formateo de fechas
@@ -16,7 +17,7 @@ def generar_estado_servicios(df_ficha_mes, df_gastos):
     # seleccion de columnas de servicios-ingreso
     cols_servicios_ingreso = ["agua", "gas", "internet", "expensas", "luz"]
 
-    # calcula el ingreso del mes por servicio
+    # calcula el ingreso estimado del mes por servicio
     df_ingresos_servicios = (
         df_ficha_mes.groupby("num_mes")[cols_servicios_ingreso].sum().reset_index()
     )
@@ -35,20 +36,21 @@ def generar_estado_servicios(df_ficha_mes, df_gastos):
         "obras sanitarias": "agua",
     }
 
-    # columna nueva para asignar servicio al gasto
+    # columna nueva para asignar servicio-ingreso al gasto
     df_gastos["servicio"] = df_gastos["gasto"].map(mapeo_servicios)
 
     # filtro de servicios y gastos seleccionados
     df_gastos_filtrado = df_gastos[df_gastos["servicio"].notna()].copy()
 
-    # agrupa por mes y servicio y suma el monto
+    # agrupa por mes, servicio y suma el monto
     df_gastos_por_servicio = (
         df_gastos_filtrado.groupby(["num_mes", "servicio"])["monto"].sum().reset_index()
     )
+
     # renombra columna
     df_gastos_por_servicio.rename(columns={"monto": "monto_gasto"}, inplace=True)
 
-    # merge de ingresos y gasto
+    # genera df con ingresos y gastos por servicio
     df_comparativo = pd.merge(
         df_ingresos_servicios,
         df_gastos_por_servicio,
@@ -61,4 +63,5 @@ def generar_estado_servicios(df_ficha_mes, df_gastos):
         df_comparativo["monto_estimado"] - df_comparativo["monto_gasto"]
     )
 
+    # retorna df final
     return df_comparativo

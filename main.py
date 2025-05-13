@@ -46,8 +46,6 @@ df_ingresos = obtener_sheet(cliente_origen, LIBRO_ORIGEN, "Ingresos")
 df_clientes = obtener_sheet(cliente_origen, LIBRO_ORIGEN, "Clientes")
 df_gastos = obtener_sheet(cliente_origen, LIBRO_ORIGEN, "Gastos")
 df_seguimiento_gas = obtener_sheet(cliente_origen, LIBRO_ORIGEN, "Seguimiento Gas")
-
-# de hojas de calculo a df's (para pagina dos)
 df_estado_deptos = obtener_sheet(cliente_origen, LIBRO_ORIGEN, "Deptos")
 df_estado_cochera = obtener_sheet(cliente_origen, LIBRO_ORIGEN, "Cochera")
 
@@ -57,8 +55,6 @@ df_ingresos.to_csv("data_backup/ingresos.csv", index=False)
 df_clientes.to_csv("data_backup/clientes.csv", index=False)
 df_gastos.to_csv("data_backup/gastos.csv", index=False)
 df_seguimiento_gas.to_csv("data_backup/seguimiento_gas.csv", index=False)
-
-# guardado de df's como proteccion de datos (para pagina dos)
 df_estado_deptos.to_csv("data_backup/estado_deptos.csv", index=False)
 df_estado_cochera.to_csv("data_backup/estado_cochera.csv", index=False)
 
@@ -66,15 +62,13 @@ df_estado_cochera.to_csv("data_backup/estado_cochera.csv", index=False)
 # ----------------------------
 # GENERACION DE MODELOS
 
-# creacion de df's para hojas de calculo auxiliares (para pagina uno)
+# creacion de df's para hojas de calculo auxiliares
 df_ingresos_mensuales = generar_ingresos_mensuales(
     df_ficha_mes, df_ingresos, df_clientes
 )
 df_gastos_mensuales = generar_gastos_mensuales(df_gastos)
 df_rentabilidad = generar_rentabilidad(df_ingresos_mensuales, df_gastos_mensuales)
 df_seguimiento_gas = generar_seguimiento_gas(df_seguimiento_gas)
-
-# creacion de df's para hojas de calculo auxiliares (para pagina dos)
 df_estado_edificio = generar_estado_edificio(df_estado_deptos, df_estado_cochera)
 df_estado_servicios = generar_estado_servicios(df_ficha_mes, df_gastos)
 
@@ -89,8 +83,6 @@ cargar_sheet(
 cargar_sheet(cliente_destino, LIBRO_DESTINO, "Gastos Mensuales", df_gastos_mensuales)
 cargar_sheet(cliente_destino, LIBRO_DESTINO, "Rentabilidad", df_rentabilidad)
 cargar_sheet(cliente_destino, LIBRO_DESTINO, "Seguimiento Gas", df_seguimiento_gas)
-
-# creacion y carga de sheets en el libro auxiliar (para pagina dos)
 cargar_sheet(cliente_destino, LIBRO_DESTINO, "Estado Edificio", df_estado_edificio)
 cargar_sheet(cliente_destino, LIBRO_DESTINO, "Estado Servicios", df_estado_servicios)
 

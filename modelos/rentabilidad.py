@@ -1,23 +1,22 @@
-# librerias
+# Librerias
 import pandas as pd
 
 
-# Funcion que genera hoja auxiliar para rentabilidad
-# trabaja con los df's creados de ingresos y gastos mensuales
-# calcula el total por mes de cada df y calcula la respectiva rentabilidad
+# Funcion que genera df de rentabilidad mensual del negocio
+# compara el total ingresado por el total gastado por mes
 def generar_rentabilidad(df_ingresos_mensuales, df_gastos_mensuales):
 
-    # calcular total ingresos x mes
+    # calcula total ingresos x mes
     df_ingresos_mensuales_totales = (
         df_ingresos_mensuales.groupby("num_mes")["total_pagado"].sum().reset_index()
     )
 
-    # calcular total gastos x mes
+    # calcula total gastado x mes
     df_gastos_mensuales_totales = (
         df_gastos_mensuales.groupby("num_mes")["monto"].sum().reset_index()
     )
 
-    # genera df rentabilidad integrando ingresos con gastos
+    # genera df rentabilidad con ingresos y gastos por mes
     df_rentabilidad = pd.merge(
         df_ingresos_mensuales_totales,
         df_gastos_mensuales_totales,
@@ -30,7 +29,7 @@ def generar_rentabilidad(df_ingresos_mensuales, df_gastos_mensuales):
         columns={"total_pagado": "total_ingresos", "monto": "total_gastos"}
     )
 
-    # calcula rentabilidad
+    # calcula rentabilidad mensual
     df_rentabilidad["rentabilidad"] = (
         df_rentabilidad["total_ingresos"] - df_rentabilidad["total_gastos"]
     )

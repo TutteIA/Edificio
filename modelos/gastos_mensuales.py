@@ -1,9 +1,8 @@
-# librerias
+# Librerias
 import pandas as pd
 
 
-# Funcion que genera df de gastos mensualea
-# extrae toda la hoja de gastos
+# Funcion que genera un df con los gastos del negocio
 def generar_gastos_mensuales(df_gastos):
 
     # formatear fechas

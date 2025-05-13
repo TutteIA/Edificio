@@ -9,3 +9,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 get_hojas ->
 from gspread_dataframe import get_as_dataframe
 from gspread_dataframe import set_with_dataframe
+
+de modelos:
+import pandas as pd
