@@ -1,10 +1,10 @@
-# librerias
+# Librerias
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 
-# Funcion para conectar python a google drive y sheets
-# usamos credenciales y un json creado desde google console cloud
+# Funcion para conectar python con google drive y sheets
+# usamos las credenciales publicas y json de google console cloud
 def conexion_google(credenciales_json):
 
     # credenciales de acceso globales

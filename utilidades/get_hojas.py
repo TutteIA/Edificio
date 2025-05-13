@@ -1,10 +1,11 @@
-# librerias
+# Librerias
 from gspread_dataframe import get_as_dataframe
 from gspread_dataframe import set_with_dataframe
 import gspread
 
 
 # Funcion para extraer hoja de calculo de un Libro
+# lo retorna como df
 def obtener_sheet(cliente, nombre_libro, nombre_hoja):
 
     libro = cliente.open(nombre_libro)
@@ -19,10 +20,10 @@ def obtener_sheet(cliente, nombre_libro, nombre_hoja):
     return df
 
 
-# Funcion para escribir hoja de calculo en un Libro
-def cargar_sheet(cliente, key_del_libro, nombre_hoja, df):
+# Funcion para pasar un df a una hoja de calculo en un Libro
+def cargar_sheet(cliente, nombre_libro, nombre_hoja, df):
 
-    libro = cliente.open_by_key(key_del_libro)
+    libro = cliente.open(nombre_libro)
 
     try:
         hoja = libro.worksheet(nombre_hoja)
