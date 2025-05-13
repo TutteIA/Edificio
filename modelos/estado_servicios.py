@@ -31,7 +31,7 @@ def generar_estado_servicios(df_ficha_mes, df_gastos):
         "edea": "luz",
         "limpieza": "expensas",
         "personal flow": "internet",
-        "par garrafas grandes": "gas",
+        "par garrafas de 45": "gas",
         "obras sanitarias": "agua",
     }
 
